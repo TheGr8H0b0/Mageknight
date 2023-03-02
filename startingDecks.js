@@ -110,6 +110,66 @@ export const startingDeck_Arythea = [
   new Card().initializeSimpleCard("Improvisation", "Discard another card from your hand to get Move 3, Influence 3, Attack 3 or Block 3", "Discard another card from your hand to get Move 5, Influence 5, Attack 5 or Block 5", crystals.Red, "basic")
 ]
 
+//Braevelar Starting Deck
+export const startingDeck_Braevelar = [
+  new Card().initializeSimpleCard("Rage", "Attack or Block 2", "Attack 4", crystals.Red, "basic"),
+  new Card().initializeSimpleCard("Battle Versatility", "Attack 2, Block 2 or Ranged Attack 1.", "Attack 4, Block 4, Fire Attack 3, Fire Block 3, Ranged Attack 3 or Siege Attack 2.", crystals.Red, "basic"),
+  new Card().initializeSimpleCard("Determination", "Attack or Block 2", "Block 4", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Swiftness", "Move 2", "Ranged Attack 3", crystals.White, "basic"),
+  new Card().initializeSimpleCard("Swiftness", "Move 2", "Ranged Attack 3", crystals.White, "basic"),
+  new Card().initializeSimpleCard("March", "Move 2", "Move 4", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("One With the Land", "Move 2, Heal 1, or Block 2", "Move 4, Heal 2, or Block equal to the unmodified Move cost of the space you are in (Mountain 5, Lakes 2). This is Fire Block in the day, and Ice Block at night.", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("Stamina","Move 2", "Move 4", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Druidic Paths", "Move 2. The move cost of one space is Reduced by 1 this turn, to a minimum of 2.", "Move 4. The move cost of one type of terrain is Reduced by 1 this turn, to a minimum of 2.", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Tranquility", "Heal 1 or Draw a Card", "Heal 2 or Draw two Cards", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("Promise", "Influence 2", "Influence 4", crystals.White, "basic"),
+  new Card().initializeSimpleCard("Threaten", "Influence 2", "Influence 5. Reputation -1", crystals.Red, "basic"),
+  new Card().initializeSimpleCard("Crystallize", "When you play this, also pay one mana of a basic color. Gain a crystal of that color to your Inventory.", "Gain a crystal of any color to your Inventory.", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Mana Pull", "You can use one additional mana die from the Source this turn. If that die is black, use it to produce mana of any color.", "Take two mana dice from the source and set them to any color except gold. Gain a mana token of each of these colors. Do not reroll these dice when you return them to the Source.", crystals.White, "basic"),
+  new Card().initializeSimpleCard("Concentration", "Gain a blue, white or red mana token.", "When you play this, play another Action card with it. Get the stronger effect of that card for free. If that effect gives you Move, Influence, Block or any type of Attack, get that amount plus 2", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("Improvisation", "Discard another card from your hand to get Move 3, Influence 3, Attack 3 or Block 3", "Discard another card from your hand to get Move 5, Influence 5, Attack 5 or Block 5", crystals.Red, "basic")
+]
+
+//Wolfhawk Starting Deck
+export const startingDeck_Wolfhawk = [
+  new Card().initializeSimpleCard("Rage", "Attack or Block 2", "Attack 4", crystals.Red, "basic"),
+  new Card().initializeSimpleCard("Rage", "Attack or Block 2", "Attack 4", crystals.Red, "basic"),
+  new Card().initializeSimpleCard("Determination", "Attack or Block 2", "Block 4", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Swiftness", "Move 2", "Ranged Attack 3", crystals.White, "basic"),
+  new Card().initializeSimpleCard("Swift Reflexes", "Move 2, Ranged Attack 1, or reduce one enemy attack by 1.", "Move 4, Ranged Attack 3, or reduce one enemy attack by 2.", crystals.White, "basic"),
+  new Card().initializeSimpleCard("March", "Move 2", "Move 4", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("March", "Move 2", "Move 4", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("Stamina", "Move 2", "Move 4", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Tirelessness", "Move 2. The next card providing Move (including cards played sideways) gives 1 extra move this turn.", "Move 4. Each other card providing move (including cards played sideways) gives one extra Move this turn.", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Tranquility", "Heal 1 or Draw a Card", "Heal 2 or Draw two Cards", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("Promise", "Influence 2", "Influence 4", crystals.White, "basic"),
+  new Card().initializeSimpleCard("Threaten", "Influence 2", "Influence 5. Reputation -1", crystals.Red, "basic"),
+  new Card().initializeSimpleCard("Crystallize", "When you play this, also pay one mana of a basic color. Gain a crystal of that color to your Inventory.", "Gain a crystal of any color to your Inventory.", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Mana Draw", "You can use one additional mana die from the Source this turn.", "Take a mana die from the source and set it to any color except gold. Gain two mana tokens of that color. Do not reroll this die when you return it to the Source.", crystals.White, "basic"),
+  new Card().initializeSimpleCard("Concentration", "Gain a blue, white or red mana token.", "When you play this, play another Action card with it. Get the stronger effect of that card for free. If that effect gives you Move, Influence, Block or any type of Attack, get that amount plus 2", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("Improvisation", "Discard another card from your hand to get Move 3, Influence 3, Attack 3 or Block 3", "Discard another card from your hand to get Move 5, Influence 5, Attack 5 or Block 5", crystals.Red, "basic")
+]
+
+//Krang Starting Deck
+export const startingDeck_Krang = [
+  new Card().initializeSimpleCard("Rage", "Attack or Block 2", "Attack 4", crystals.Red, "basic"),
+  new Card().initializeSimpleCard("Rage", "Attack or Block 2", "Attack 4", crystals.Red, "basic"),
+  new Card().initializeSimpleCard("Determination", "Attack or Block 2", "Block 4", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Swiftness", "Move 2", "Ranged Attack 3", crystals.White, "basic"),
+  new Card().initializeSimpleCard("Swiftness", "Move 2", "Ranged Attack 3", crystals.White, "basic"),
+  new Card().initializeSimpleCard("Savage Harvesting", "Move 2. Once this turn when you move a space you may discard a card to gain a crystal of the same color. If you discard an Artifact you may choose the color.", "Move 4. Each time you move a space you may discard a card to gain a crystal of the same color. If you discard an Artifact you may choose the color.", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("March", "Move 2", "Move 4", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("Stamina", "Move 2", "Move 4", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Stamina", "Move 2", "Move 4", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Tranquility", "Heal 1 or Draw a Card", "Heal 2 or Draw two Cards", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("Promise", "Influence 2", "Influence 4", crystals.White, "basic"),
+  new Card().initializeSimpleCard("Ruthless Coercion", "Influence 2. You may get a discount of 2 towards the cost of recruiting one Unit. If you recruit that Unit this turn then Reputation -1", "Influence 6. Reputation -1. You may ready level I and II Units you control by paying 2 Influence per level of Unit.", crystals.Red, "basic"),
+  new Card().initializeSimpleCard("Crystallize", "When you play this, also pay one mana of a basic color. Gain a crystal of that color to your Inventory.", "Gain a crystal of any color to your Inventory.", crystals.Blue, "basic"),
+  new Card().initializeSimpleCard("Mana Draw", "You can use one additional mana die from the Source this turn.", "Take a mana die from the source and set it to any color except gold. Gain two mana tokens of that color. Do not reroll this die when you return it to the Source.", crystals.White, "basic"),
+  new Card().initializeSimpleCard("Concentration", "Gain a blue, white or red mana token.", "When you play this, play another Action card with it. Get the stronger effect of that card for free. If that effect gives you Move, Influence, Block or any type of Attack, get that amount plus 2", crystals.Green, "basic"),
+  new Card().initializeSimpleCard("Improvisation", "Discard another card from your hand to get Move 3, Influence 3, Attack 3 or Block 3", "Discard another card from your hand to get Move 5, Influence 5, Attack 5 or Block 5", crystals.Red, "basic")
+]
+
 export const advancedActions = [
   new Card().initializeSimpleCard("Fire Bolt", "Gain a red crystal to your Inventory.", "Ranged Fire Attack 3", crystals.Red, "advancedAction"),
   new Card().initializeSimpleCard("Ice Bolt", "Gain a blue crystal to your Inventory.", "Ranged Ice Attack 3", crystals.Blue, "advancedAction"),
