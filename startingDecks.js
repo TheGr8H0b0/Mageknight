@@ -1,6 +1,6 @@
 import {Card, Ability, Unit} from '../card.js'
 
-export const crystals = {
+const crystals = {
   "Red":"Red",
   "R":"Red",
   "Green":"Green",
@@ -33,7 +33,6 @@ const basic_startingDeck = [
   new Card().initializeSimpleCard("Concentration", "Gain a blue, white or red mana token.", "When you play this, play another Action card with it. Get the stronger effect of that card for free. If that effect gives you Move, Influence, Block or any type of Attack, get that amount plus 2", crystals.Green, "basic"),
   new Card().initializeSimpleCard("Improvisation", "Discard another card from your hand to get Move 3, Influence 3, Attack 3 or Block 3", "Discard another card from your hand to get Move 5, Influence 5, Attack 5 or Block 5", crystals.Red, "basic")
 ]
-console.log(basic_startingDeck)
 
 export const startingDeck_Goldyx = [
   new Card().initializeSimpleCard("Rage", "Attack or Block 2", "Attack 4", crystals.Red, "basic"),
@@ -257,7 +256,7 @@ export const silverUnits = [
 ]
 
 //Weird units, not sure what to do / how to mark their special traits
-export const silverUnitExtras = [
+const silverUnitExtras = [
   new Unit().initializeUnit("Thugs",[new Ability().initializeAbility("Block 3","","Ability 1"),new Ability().initializeAbility("Attack 3, Reputation -1","","Ability 2"),new Ability().initializeAbility("Influence 4, Reputation -1","","Ability 3")],"I","5. Your reputation penalty or bonus is inverted during the interaction in which you recruit the Thugs. (You still cannot recruit them if you are at the X space of the reputation track.)","5, but you have to pay 2 influence to assign damage to the Thugs during combat.",["Village"," Keep"],""),
   new Unit().initializeUnit("Thugs",[new Ability().initializeAbility("Block 3","","Ability 1"),new Ability().initializeAbility("Attack 3, Reputation -1","","Ability 2"),new Ability().initializeAbility("Influence 4, Reputation -1","","Ability 3")],"I","5. Your reputation penalty or bonus is inverted during the interaction in which you recruit the Thugs. (You still cannot recruit them if you are at the X space of the reputation track.)","5, but you have to pay 2 influence to assign damage to the Thugs during combat.",["Village"," Keep"],""),
   //Very strange -- Look up online to know more
@@ -288,7 +287,7 @@ export const GoldUnits = [
 ]
 
 //Weird units, not sure what to do / how to mark their special traits
-export const goldUnitExtras = [
+const goldUnitExtras = [
   // Must pay 2 influence to use Heroes during an assault or player attack
   new Unit().initializeUnit("Heroes (white)",[new Ability().initializeAbility("Attack or Block 5","","Ability 1"),new Ability().initializeAbility("Ranged Attack 7",crystals.White,"Ability 2"),new Ability().initializeAbility("Influence 5. If used during interaction, Reputation +1.","","Ability 3")],"III","9. Your reputation penalty or bonus is doubled during the interaction in which you recruit the Heroes.","6",["Village"," Keep"," City"],""),
   new Unit().initializeUnit("Heroes (green)",[new Ability().initializeAbility("Attack or Block 5","","Ability 1"),new Ability().initializeAbility("Heal 4",crystals.Green,"Ability 2"),new Ability().initializeAbility("Influence 5. If used during interaction, Reputation +1.","","Ability 3")],"III","9. Your reputation penalty or bonus is doubled during the interaction in which you recruit the Heroes.","3",["Village"," Keep"," City"],["Physical"]),

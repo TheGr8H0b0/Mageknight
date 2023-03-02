@@ -32,6 +32,13 @@ function displayCardList(cardListToDisplay, targetToInsertAt, cardListTitle="Car
 }
 
 function formatCardToHTML(card) {
+  let cardAbilities = card.abilities.map(ability => 
+        `<tr class="${"ability cost_" + ability.crystalCost}">
+          <td>
+            ${ability.effect}
+          </td>
+        </tr>`
+      ).join('')
   if (card.cardType != 'Unit') {
     return `<table class="${"basicCardDisplay " + card.cardName.split(' ').join('_')}">
       <tr class="title">
@@ -39,13 +46,7 @@ function formatCardToHTML(card) {
           ${card.cardName}
         </td>
       </tr>
-      ${card.abilities.map(ability => 
-        `<tr class="${"ability cost_" + ability.crystalCost}">
-          <td>
-            ${ability.effect}
-          </td>
-        </tr>`
-      )}
+      ${cardAbilities}
     </table>`
     } else {
       return `<table class="${"unitCardDisplay " + card.cardName.split(' ').join('_')}">
@@ -69,13 +70,7 @@ function formatCardToHTML(card) {
           ${card.recruitmentAreas.length > 0 ? "Recruited at: " + card.recruitmentAreas.join(', ') : "Nowhere"}
         </td>
       </tr>
-      ${card.abilities.map(ability => 
-        `<tr class="${"ability cost_" + ability.crystalCost}">
-          <td>
-            ${ability.effect}
-          </td>
-        </tr>`
-      )}
+      ${cardAbilities}
     </table>`
     }
 }
