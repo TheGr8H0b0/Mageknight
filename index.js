@@ -1,6 +1,31 @@
 import * as cardLists from '../startingDecks.js'
 
+export function addCardToDeck(card) {
+  let newDiv = document.createElement('div')
+  newDiv.innerHTML = formatCardToHTML(card)
+  let cardList = document.querySelector('.Current_deck .cardList')
+  if (cardList) {
+    cardList.append(newDiv)
+  }
+}
+
+export function removeCardFromDeck(card) {
+  let cardList = document.querySelector('.Current_deck .cardList')
+  if (cardList) {
+    let selectedCard = cardList.querySelector(`.${card.cardName.split(' ').join('_')}`)
+    if (selectedCard) {
+      selectedCard.parentElement.remove()
+    }
+  }
+}
+
+function clearCurrentDeck() {
+  document.querySelector('.Current_deck .cardList').innerHTML = ""
+}
+
 document.addEventListener('DOMContentLoaded', (e) => {
+  displayCardList([], document.querySelector('.Current_deck'), "Current Deck")
+  document.querySelector('#clearDeck').onclick = () => clearCurrentDeck();
 
   displayCardList(cardLists.startingDeck_Goldyx, document.querySelector('.Goldyx_starting'), "Goldyx Starting Deck")
   displayCardList(cardLists.startingDeck_Norrowas, document.querySelector('.Norrowas_starting'), "Norrowas Starting Deck")
@@ -31,7 +56,7 @@ function displayCardList(cardListToDisplay, targetToInsertAt, cardListTitle="Car
   targetToInsertAt.append(cardList)
 }
 
-function formatCardToHTML(card) {
+export function formatCardToHTML(card) {
   let cardAbilities = card.abilities.map(ability => 
         `<tr class="${"ability cost_" + ability.crystalCost}">
           <td>

@@ -1,63 +1,17 @@
 import * as cardLists from '../startingDecks.js'
+import {addCardToDeck, formatCardToHTML, removeCardFromDeck} from '../index.js'
 
-function displayCardList(cardObjectListToDisplay, targetToInsertAt) {
+function displayCardList(cardObjectListToDisplay, targetToInsertAt, onclickFunction) {
   const cardList = document.createElement('div')
   cardList.classList.add('cardList')
   cardObjectListToDisplay.forEach(cardObject => {
     let card = cardObject[Object.keys(cardObject)[0]]
     let newDiv = document.createElement('div')
     newDiv.innerHTML = formatCardToHTML(card)
+    newDiv.onclick = () => onclickFunction(card);
     cardList.append(newDiv)
   })
   targetToInsertAt.append(cardList)
-}
-
-function formatCardToHTML(card) {
-  let cardAbilities = card.abilities.map(ability => 
-        `<tr class="${"ability cost_" + ability.crystalCost}">
-          <td>
-            ${ability.effect}
-          </td>
-        </tr>`
-      ).join('')
-  if (card.cardType != 'Unit') {
-    return `<table class="${"basicCardDisplay " + card.cardName.split(' ').join('_')}">
-    <tbody>
-      <tr class="title">
-        <td>
-          ${card.cardName}
-        </td>
-      </tr>
-      ${cardAbilities}
-      </tbody>
-    </table>`
-    } else {
-      return `<table class="${"unitCardDisplay " + card.cardName.split(' ').join('_')}">
-      <tbody>
-      <tr class="title">
-        <td>
-          ${card.cardName}
-        </td>
-      </tr>
-      <tr class="unit_info">
-        <td>
-          L: ${card.level}, I: ${card.influence}, A: ${card.armor}
-        </td>
-      </tr>
-      <tr class="unit_resistance">
-        <td>
-          ${card.resistances.length > 0 ? "Resists: " + card.resistances.join(', ') : "No Resistances"}
-        </td>
-      </tr>
-      <tr class="unit_recruitment">
-        <td>
-          ${card.recruitmentAreas.length > 0 ? "Recruited at: " + card.recruitmentAreas.join(', ') : "Nowhere"}
-        </td>
-      </tr>
-      ${cardAbilities}
-      </tbody>
-    </table>`
-    }
 }
 
 function appendToMasterList(cardList) {
@@ -92,23 +46,72 @@ function createDefaultMasterList() {
 let masterCardList = []
 createDefaultMasterList()
 masterCardList = masterCardList.sort((a, b) => a[Object.keys(a)[0]].cardName.localeCompare(b[Object.keys(b)[0]].cardName));
-displayCardList(Object.values(masterCardList), document.getElementById('cardSelectionDisplay'))
 
 // ------------–------------------     Modal Functionality   –-----------------–---------------–
 // ------------–---------------–---------------–---------------–---------------–---------------–
 // ------------–---------------–---------------–---------------–---------------–---------------–
 var cardSelectorModal = document.getElementById("cardSelectorModal");
-var btn = document.getElementById("cardSelectorModalButton");
+var addCardButton = document.getElementById("cardAdderButton");
+var removeCardButton = document.getElementById("cardRemoverButton");
+const cardSelectList = document.getElementById('cardSelectionDisplay')
 var span = document.getElementsByClassName("close")[0];
-btn.onclick = function() {
+addCardButton.onclick = () =>  {
+  cardSelectList.innerHTML = ""
   cardSelectorModal.style.display = "block";
+  cardSelectorModal.classList.add("addCard");
+  displayCardList(Object.values(masterCardList), cardSelectList, addCardToDeck)
+}
+removeCardButton.onclick = () => {
+  cardSelectList.innerHTML = ""
+  cardSelectorModal.style.display = "block";
+  cardSelectorModal.classList.add("removeCard");
+  displayCardList(Object.values(masterCardList), cardSelectList, removeCardFromDeck)
 }
 span.onclick = function() {
   cardSelectorModal.style.display = "none";
+  cardSelectorModal.classList.remove("removeCard");
+  cardSelectorModal.classList.remove("addCard");
 }
 window.onclick = function(event) {
   if (event.target == cardSelectorModal) {
     cardSelectorModal.style.display = "none";
+    cardSelectorModal.classList.remove("removeCard");
+    cardSelectorModal.classList.remove("addCard");
   }
 }
 // ------------–---------------–---------------–---------------–---------------–---------------–
+
+
+
+const clearIcon = document.querySelector(".clear-icon");
+const searchBar = document.querySelector(".search");
+
+searchBar.addEventListener("keyup", () => {
+  cardSelectList.innerHTML = ""
+  if(searchBar.value) {
+    if (clearIcon.style.visibility != "visible") {
+      clearIcon.style.visibility = "visible";
+    }
+    let searchedCardList = masterCardList.filter(f => Object.values(f)[0].cardName.toLowerCase().includes(searchBar.value)) 
+    if (cardSelectorModal.classList.contains("removeCard")) {
+      displayCardList(Object.values(searchedCardList), cardSelectList, removeCardFromDeck)
+      console.log(removeCardFromDeck)
+    } else if (cardSelectorModal.classList.contains("addCard")) {
+      displayCardList(Object.values(searchedCardList), cardSelectList, addCardToDeck)
+      console.log(removeCardFromDeck)
+    }
+  } else {
+    clearIcon.style.visibility = "hidden";
+    if (cardSelectorModal.classList.contains("removeCard")) {
+      displayCardList(Object.values(masterCardList), cardSelectList, removeCardFromDeck)
+    } else if (cardSelectorModal.classList.contains("addCard")) {
+      displayCardList(Object.values(masterCardList), cardSelectList, addCardToDeck)
+    }
+  }
+
+});
+
+clearIcon.addEventListener("click", () => {
+  searchBar.value = "";
+  clearIcon.style.visibility = "hidden";
+})
