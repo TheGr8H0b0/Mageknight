@@ -1,3 +1,10 @@
+export var currentDeck = []
+
+const hideThing = () => {
+  console.log("TEST")
+  document.querySelector('#cardUpdatedSuccessfully').style.display = "none"
+}
+
 export function addCardToDeck(card) {
   let newDiv = document.createElement('div')
   newDiv.innerHTML = formatCardToHTML(card)
@@ -5,6 +12,10 @@ export function addCardToDeck(card) {
   if (cardList) {
     cardList.append(newDiv)
   }
+  currentDeck.push(card)
+  document.querySelector('#cardUpdatedSuccessfully').innerHTML = `${card.cardName} Added!`
+  document.querySelector('#cardUpdatedSuccessfully').style.display = "block"
+  setTimeout(hideThing, 750);
 }
 
 export function removeCardFromDeck(card) {
@@ -13,12 +24,17 @@ export function removeCardFromDeck(card) {
     let selectedCard = cardList.querySelector(`.${card.cardName.split(' ').join('_')}`)
     if (selectedCard) {
       selectedCard.parentElement.remove()
+      document.querySelector('#cardUpdatedSuccessfully').innerHTML = `${card.cardName} Removed!`
+      document.querySelector('#cardUpdatedSuccessfully').style.display = "block"
+      setTimeout(hideThing, 750);
     }
   }
+  currentDeck.remove(currentDeck.find(f => f.cardName == card.cardName))
 }
 
 export function clearCurrentDeck() {
   document.querySelector('.Current_deck .cardList').innerHTML = ""
+  currentDeck = []
 }
 
 export function displayCardList(cardListToDisplay, targetToInsertAt, cardListTitle="Card List of Unknown") {

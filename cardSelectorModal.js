@@ -1,5 +1,5 @@
 import * as cardLists from '../startingDecks.js'
-import {addCardToDeck, formatCardToHTML, removeCardFromDeck, displayCardList, clearCurrentDeck} from '../index.js'
+import {addCardToDeck, formatCardToHTML, removeCardFromDeck, displayCardList, clearCurrentDeck, currentDeck} from '../index.js'
 
 function displayCardObjectList(cardObjectListToDisplay, targetToInsertAt, onclickFunction) {
   const cardList = document.createElement('div')
@@ -14,6 +14,7 @@ function displayCardObjectList(cardObjectListToDisplay, targetToInsertAt, onclic
   targetToInsertAt.append(cardList)
 }
 
+// ----------------------------------- Create Master Card List and Sort it ------------------------------------
 function appendToMasterList(cardList) {
   cardList.forEach(card => {
     function isCardInList(cardObject) {
@@ -46,33 +47,36 @@ document.addEventListener('DOMContentLoaded', (e) => {
   displayCardList([], document.querySelector('.Current_deck'), "Current Deck")
   document.querySelector('#clearDeck').onclick = () => clearCurrentDeck();
 })
-
-// Create the master Card List and inject it into the Modal
 let masterCardList = []
 createDefaultMasterList()
 masterCardList = masterCardList.sort((a, b) => a[Object.keys(a)[0]].cardName.localeCompare(b[Object.keys(b)[0]].cardName));
+//------------------------------------------------------------------------------------------------------------
 
-// ------------–------------------     Modal Functionality   –-----------------–---------------–
-// ------------–---------------–---------------–---------------–---------------–---------------–
-// ------------–---------------–---------------–---------------–---------------–---------------–
+// -------------------–------------------     Modal Functionality   –-----------------–---------------–-------
+// ----------- Variables -----------
 var cardSelectorModal = document.getElementById("cardSelectorModal");
 var startingDeckModal = document.getElementById("startingDeckModal");
 var addCardButton = document.getElementById("cardAdderButton");
 var starterDeckButton = document.getElementById("starterDeck");
 var removeCardButton = document.getElementById("cardRemoverButton");
+var cardUpdatedBadge = document.getElementById("cardUpdatedSuccessfully")
 const cardSelectList = document.getElementById('cardSelectionDisplay');
 const startingDeckList = document.getElementById('startingDeckDisplay');
 const clearIcon = document.querySelector(".clear-icon");
 const searchBar = document.querySelector(".search");
 var span = document.querySelectorAll(".modal .close");
+
+//-----------  Onclick Functions  -----------
 addCardButton.onclick = () =>  {
   cardSelectList.innerHTML = ""
+  cardUpdatedBadge.style.display = "none";
   cardSelectorModal.style.display = "block";
   cardSelectorModal.classList.add("addCard");
   displayCardObjectList(Object.values(masterCardList), cardSelectList, addCardToDeck)
 }
 removeCardButton.onclick = () => {
   cardSelectList.innerHTML = ""
+  cardUpdatedBadge.style.display = "none";
   cardSelectorModal.style.display = "block";
   cardSelectorModal.classList.add("removeCard");
   displayCardObjectList(Object.values(masterCardList), cardSelectList, removeCardFromDeck)
@@ -83,6 +87,7 @@ starterDeckButton.onclick = () => {
 }
 span.forEach(e => e.onclick = function() {
   searchBar.value = "";
+  cardUpdatedBadge.style.display = "none";
   cardSelectorModal.style.display = "none";
   startingDeckModal.style.display = "none";
   cardSelectorModal.classList.remove("removeCard");
@@ -91,6 +96,7 @@ span.forEach(e => e.onclick = function() {
 window.onclick = function(event) {
   if (event.target == cardSelectorModal) {
     searchBar.value = "";
+    cardUpdatedBadge.style.display = "none";
     cardSelectorModal.style.display = "none";
     cardSelectorModal.classList.remove("removeCard");
     cardSelectorModal.classList.remove("addCard");
@@ -98,8 +104,14 @@ window.onclick = function(event) {
     startingDeckModal.style.display = "none";
   }
 }
-// ------------–---------------–---------------–---------------–---------------–---------------–
+clearIcon.addEventListener("click", () => {
+  searchBar.value = "";
+  cardUpdatedBadge.style.display = "none";
+  clearIcon.style.visibility = "hidden";
+})
+// ------------–---------------–---------------–---------------–---------------–---------------–----------
 
+// -----------------------------------  Search Bar Filter Functionality  ----------------------------------
 searchBar.addEventListener("keyup", () => {
   cardSelectList.innerHTML = ""
   if(searchBar.value) {
@@ -122,14 +134,10 @@ searchBar.addEventListener("keyup", () => {
       displayCardObjectList(Object.values(masterCardList), cardSelectList, addCardToDeck)
     }
   }
-
 });
+// ------------–---------------–---------------–---------------–---------------–---------------–------------------
 
-clearIcon.addEventListener("click", () => {
-  searchBar.value = "";
-  clearIcon.style.visibility = "hidden";
-})
-
+// -----------------------------------  Load Starting Card List Display in Modal ----------------------------------
 displayCardList(cardLists.startingDeck_Goldyx, document.querySelector('#startingDeckDisplay .Goldyx_starting'), "Goldyx Starting Deck")
 document.querySelector('#startingDeckDisplay .Goldyx_starting').onclick = () => {
   clearCurrentDeck()
@@ -137,20 +145,39 @@ document.querySelector('#startingDeckDisplay .Goldyx_starting').onclick = () => 
   cardLists.startingDeck_Goldyx.forEach(card => addCardToDeck(card))
 }
 displayCardList(cardLists.startingDeck_Norrowas, document.querySelector('#startingDeckDisplay .Norrowas_starting'), "Norrowas Starting Deck")
-document.querySelector('#startingDeckDisplay .Goldyx_starting').onclick = () => {
+document.querySelector('#startingDeckDisplay .Norrowas_starting').onclick = () => {
   clearCurrentDeck()
   startingDeckModal.style.display = "none";
   cardLists.startingDeck_Norrowas.forEach(card => addCardToDeck(card))
 }
 displayCardList(cardLists.startingDeck_Tovak, document.querySelector('#startingDeckDisplay .Tovak_starting'), "Tovak Starting Deck")
-document.querySelector('#startingDeckDisplay .Goldyx_starting').onclick = () => {
+document.querySelector('#startingDeckDisplay .Tovak_starting').onclick = () => {
   clearCurrentDeck()
   startingDeckModal.style.display = "none";
   cardLists.startingDeck_Tovak.forEach(card => addCardToDeck(card))
 }
 displayCardList(cardLists.startingDeck_Arythea, document.querySelector('#startingDeckDisplay .Arythea_starting'), "Arythea Starting Deck")
-document.querySelector('#startingDeckDisplay .Goldyx_starting').onclick = () => {
+document.querySelector('#startingDeckDisplay .Arythea_starting').onclick = () => {
   clearCurrentDeck()
   startingDeckModal.style.display = "none";
   cardLists.startingDeck_Arythea.forEach(card => addCardToDeck(card))
 }
+displayCardList(cardLists.startingDeck_Braevelar, document.querySelector('#startingDeckDisplay .Braevelar_starting'), "Braevelar Starting Deck")
+document.querySelector('#startingDeckDisplay .Braevelar_starting').onclick = () => {
+  clearCurrentDeck()
+  startingDeckModal.style.display = "none";
+  cardLists.startingDeck_Arythea.forEach(card => addCardToDeck(card))
+}
+displayCardList(cardLists.startingDeck_Wolfhawk, document.querySelector('#startingDeckDisplay .Wolfhawk_starting'), "Wolfhawk Starting Deck")
+document.querySelector('#startingDeckDisplay .Wolfhawk_starting').onclick = () => {
+  clearCurrentDeck()
+  startingDeckModal.style.display = "none";
+  cardLists.startingDeck_Arythea.forEach(card => addCardToDeck(card))
+}
+displayCardList(cardLists.startingDeck_Krang, document.querySelector('#startingDeckDisplay .Krang_starting'), "Krang Starting Deck")
+document.querySelector('#startingDeckDisplay .Krang_starting').onclick = () => {
+  clearCurrentDeck()
+  startingDeckModal.style.display = "none";
+  cardLists.startingDeck_Arythea.forEach(card => addCardToDeck(card))
+}
+// ----------------------------------------------------------------------------------------------------------------------
