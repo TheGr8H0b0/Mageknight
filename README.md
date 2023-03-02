@@ -7,3 +7,6 @@ TODO
 5. Add "Put card back to deck" functionality (Puts selected card from hand to deck - randomly (shuffle) )
 6. Add "Put used card from hand to deck/Discard"
 7. Add "Put gained card into Discard/Hand"
+8. Add "Unit area, ready or not ready indicator"
+9. Add "Playmatt Area with spots on board"
+10. Add "Crystal and mana count"
