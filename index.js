@@ -1,5 +1,3 @@
-import * as cardLists from '../startingDecks.js'
-
 export function addCardToDeck(card) {
   let newDiv = document.createElement('div')
   newDiv.innerHTML = formatCardToHTML(card)
@@ -19,28 +17,11 @@ export function removeCardFromDeck(card) {
   }
 }
 
-function clearCurrentDeck() {
+export function clearCurrentDeck() {
   document.querySelector('.Current_deck .cardList').innerHTML = ""
 }
 
-document.addEventListener('DOMContentLoaded', (e) => {
-  displayCardList([], document.querySelector('.Current_deck'), "Current Deck")
-  document.querySelector('#clearDeck').onclick = () => clearCurrentDeck();
-
-  displayCardList(cardLists.startingDeck_Goldyx, document.querySelector('.Goldyx_starting'), "Goldyx Starting Deck")
-  displayCardList(cardLists.startingDeck_Norrowas, document.querySelector('.Norrowas_starting'), "Norrowas Starting Deck")
-  displayCardList(cardLists.startingDeck_Tovak, document.querySelector('.Tovak_starting'), "Tovak Starting Deck")
-  displayCardList(cardLists.startingDeck_Arythea, document.querySelector('.Arythea_starting'), "Arythea Starting Deck")
-  
-  displayCardList(cardLists.advancedActions, document.querySelector('.advanced_actions'), "Advanced Actions")
-  displayCardList(cardLists.spells, document.querySelector('.spells'), "Spells")
-  displayCardList(cardLists.artifacts, document.querySelector('.artifacts'), "Artifacts")
-  displayCardList(cardLists.Wounds, document.querySelector('.wounds'), "Wounds")
-  displayCardList(cardLists.silverUnits, document.querySelector('.silver_units'), "Silver Units")
-  displayCardList(cardLists.GoldUnits, document.querySelector('.gold_units'), "Gold Units")
-})
-
-function displayCardList(cardListToDisplay, targetToInsertAt, cardListTitle="Card List of Unknown") {
+export function displayCardList(cardListToDisplay, targetToInsertAt, cardListTitle="Card List of Unknown") {
   const listTitle = document.createElement('div')
   listTitle.innerHTML = cardListTitle
   listTitle.classList.add('center')
